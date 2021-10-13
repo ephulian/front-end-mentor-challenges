@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap");
+
+:root {
+  --clr-sedans-bg: #e28525;
+  --clr-sedans-circle: #b86f22;
+  --clr-suvs-bg: #016972;
+  --clr-suvs-circle: #03555b;
+  --clr-luxury-bg: #00403f;
+  --clr-luxury-circle: #043333;
+  --transition: all 0.5s linear;
+  /* font-family: "Roboto", sans-serif; */
+  color: white;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+}
+
+h1 {
+  font-weight: bolder;
+  font-size: 3rem;
+  text-transform: uppercase;
+  padding-bottom: 2rem;
+  font-family: "Big Shoulders Display", cursive;
+}
+
+p {
+  font-weight: 400;
+  font-size: 1rem;
+  padding-bottom: 2rem;
+  font-family: "Lexend Deca", sans-serif;
+  line-height: 2rem;
+}
+
+.btn {
+  text-transform: capitalize;
+  border: 3px solid white;
+  background: white;
+  padding: 1.25rem;
+  width: 11rem;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-family: "Lexend Deca", sans-serif;
+  transition: var(--transition);
+}
+
+section {
+  padding: 3rem;
+}
+
+.sedans {
+  background: var(--clr-sedans-bg);
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.sedans .btn {
+  color: var(--clr-sedans-bg);
+}
+
+.sedans-btn:hover {
+  background: var(--clr-sedans-bg);
+  color: white;
+  border: 3px solid white;
+}
+
+.suvs {
+  background: var(--clr-suvs-bg);
+}
+
+.suvs .btn {
+  color: var(--clr-suvs-bg);
+}
+
+.suvs-btn:hover {
+  background: var(--clr-suvs-bg);
+  color: white;
+  border: 3px solid white;
+}
+
+.luxury {
+  background: var(--clr-luxury-bg);
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.luxury .btn {
+  color: var(--clr-luxury-bg);
+}
+
+.luxury-btn:hover {
+  background: var(--clr-luxury-bg);
+  color: white;
+  border: 3px solid white;
+}
+
+.icon-container {
+  padding-bottom: 2rem;
+}
+
+.icon {
+  height: 3rem;
+}
+
+@media screen and (min-width: 768px) {
+  section {
+    float: left;
+    width: 33.33%;
+  }
+  .sedans {
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 15px;
+  }
+  .luxury {
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 15px;
+  }
+
+  .info-item {
+    height: 22rem;
+  }
+}
