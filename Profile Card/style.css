@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap");
+
+/* font-family: 'Kumbh Sans', sans-serif; */
+
+:root {
+  font-family: "Kumbh Sans", sans-serif;
+  text-align: center;
+  letter-spacing: 0.05rem;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: hsl(185, 75%, 39%);
+  /* position: relative; */
+}
+
+h1 {
+  font-size: 1rem;
+}
+
+h3 {
+  font-weight: 400;
+  font-size: 0.5rem;
+  color: hsl(229, 23%, 23%);
+}
+
+.age {
+  font-weight: 400;
+  color: hsl(229, 23%, 23%);
+}
+
+.location {
+  font-weight: 400;
+  font-size: 0.7rem;
+  color: hsl(229, 23%, 23%);
+  padding-top: 0.7rem;
+}
+
+.profile-card {
+  /* border: 4px solid red; */
+  width: 20rem;
+  height: 22.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1rem;
+  background: white;
+}
+
+.profile-background {
+  /* border: 4px solid yellow; */
+  width: 100%;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  /* object-fit: cover; */
+}
+
+.card-image-wrapper {
+  position: relative;
+}
+
+.profile-picture-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  transform: translate(-50%, 100%);
+  object-fit: cover;
+}
+
+.profile-picture {
+  border-radius: 50%;
+  border: 5px solid white;
+  object-fit: cover;
+}
+
+.card-info-wrapper {
+  padding-top: 4rem;
+  padding-bottom: 1.75rem;
+}
+
+.line {
+  color: hsl(229, 23%, 23%);
+}
+
+.card-statistics-wrapper {
+  max-width: 20rem;
+  padding-left: 2rem;
+  padding-top: 1.75rem;
+}
+
+.stat {
+  float: left;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin: 0 auto;
+  line-height: 1.25rem;
+}
