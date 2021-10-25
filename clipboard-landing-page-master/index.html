@@ -37,7 +37,7 @@
     </div>
   </header>
   <main class="main">
-    <section class="section-center snippets">
+    <section class="section-center">
       <div class="info">
         <h2 class="title">
           Keep track of your snippets
@@ -48,40 +48,42 @@
           devices. Our Mac and iOS apps will help you organize everything.
         </p>
       </div>
-      <div class="image-container imac">
-        <img src="./images/image-computer.png" alt="imac" class="imac-img">
-      </div>
-      <div class="snippet-container">
-        <div class="info snippet">
-          <h3 class="title">
-            Quick Search
-          </h3>
-          <p class="text">
-            Easily search your snippets by content, category, web address, application, and more.
-          </p>
+      <article class="snippets">
+        <div class="image-container imac">
+          <img src="./images/image-computer.png" alt="imac" class="imac-img">
         </div>
-        <div class="info snippet">
-          <h3 class="title">
-            iCloud Sync
-          </h3>
-          <p class="text">
-            Instantly save and syncs snippets across all your devices.
-          </p>
+        <div class="snippet-container">
+          <div class="info snippet">
+            <h3 class="snippet-title">
+              Quick Search
+            </h3>
+            <p class="snippet-text">
+              Easily search your snippets by content, category, web address, application, and more.
+            </p>
+          </div>
+          <div class="info snippet">
+            <h3 class="snippet-title">
+              iCloud Sync
+            </h3>
+            <p class="snippet-text">
+              Instantly save and syncs snippets across all your devices.
+            </p>
+          </div>
+          <div class="info snippet">
+            <h3 class="snippet-title">
+              Complete History
+            </h3>
+            <p class="snippet-text">
+              Retrieve any snippets from the first moment you started using the app.
+            </p>
+          </div>
         </div>
-        <div class="info snippet">
-          <h3 class="title">
-            Complete History
-          </h3>
-          <p class="text">
-            Retrieve any snippets from the first moment you started using the app.
-          </p>
-        </div>
-      </div>
+      </article>
     </section>
     <section class="section-center clipboard">
       <div class="info">
         <h2 class="title">
-          Acess Clipboard Anywhere
+          Access Clipboard Anywhere
         </h2>
         <p class="text">
           Whether you’re on the go, or at your computer, you can access all your Clipboard
@@ -101,59 +103,99 @@
           We've got the tools to boost your productivity.
         </p>
       </div>
-
+      <article class="workflow-container max-width">
+        <div class="info">
+          <img src="./images/icon-blacklist.svg" alt="text-icon" class="icon">
+          <h3 class="title">
+            Create blacklists
+          </h3>
+          <p class="text">
+              Ensure sensitive information never makes its way to your clipboard by excluding certain sources.
+          </p>
+        </div>
+        <div class="info">
+          <img src="./images/icon-text.svg" alt="text-icon" class="icon">
+          <h3 class="title">
+            Plain text snippets
+          </h3>
+          <p class="text">
+              Remove unwanted formatting from copied text for a consistent look.
+          </p>
+        </div>
+        <div class="info">
+          <img src="./images/icon-preview.svg" alt="text-icon" class="icon">
+          <h3 class="title">
+            Sneak preview
+          </h3>
+          <p class="text">
+              Quick preview of all snippets on your Clipboard for easy access.
+          </p>
+        </div>
+      </article>
     </section>
-    <section class="section-center sponsors">
-
+    <section class="section-center sponsors ">
+      <article class="sponsors-container max-width">
+        <div class="sponsor-img-container">
+          <img src="./images/logo-google.png" alt="">
+        </div>
+        <div class="sponsor-img-container">
+          <img src="./images/logo-ibm.png" alt="">
+        </div>
+        <div class="sponsor-img-container">
+          <img src="./images/logo-microsoft.png" alt="">
+        </div>
+        <div class="sponsor-img-container">
+          <img src="./images/logo-hp.png" alt="">
+        </div>
+        <div class="sponsor-img-container">
+          <img src="./images/logo-vector-graphics.png" alt="">
+        </div>
+      </article>
     </section>
     <section class="section-center download">
-
+      <div class="info">
+        <h1 class="title">
+          Clipboard for iOS and Mac OS
+        </h1>
+        <p class="text">
+          Available for free on the App Store. Download for Mac or iOS, sync with iCloud
+          and you’re ready to start adding to your clipboard.
+        </p>
+      </div>
+          <div class="button-container">
+            <div class="button ios"><a href="#">Download for iOS</a></div>
+            <div class="button mac"><a href="#">Download for Mac</a></div>
+          </div>
     </section>
   </main>
   <footer class="footer">
-
-  </footer>
-
-  Access Clipboard anywhere
-
-  Whether you’re on the go, or at your computer, you can access all your Clipboard 
-  snippets in a few simple clicks.
-
-  Supercharge your workflow
-
-  We’ve got the tools to boost your productivity.
-
-  Create blacklists
-
-  Ensure sensitive information never makes its way to your clipboard by excluding certain sources.
-
-  Plain text snippets
-
-  Remove unwanted formatting from copied text for a consistent look.
-
-  Sneak preview
-
-  Quick preview of all snippets on your Clipboard for easy access.
-
-  Clipboard for iOS and Mac OS
-
-  Available for free on the App Store. Download for Mac or iOS, sync with iCloud 
-  and you’re ready to start adding to your clipboard.
-
-  Download for iOS
-  Download for Mac
-
-  FAQs
-  Contact Us
-  Privacy Policy
-  Press Kit
-  Install Guide
-  
-  <footer>
-    <p class="attribution">
-      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-      Coded by <a href="#">Your Name Here</a>.
-    </p>
+    <div class="footer-icon-container">
+      <img src="./images/logo.svg" class="footer-icon" alt="">
+    </div>
+    <div class="connections">
+      <div class="column-one">
+        <a href="#">FAQs</a>
+        <a href="#">Contact Us</a>
+      </div>
+      <div class="column-two">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Press Kit</a>
+      </div>
+      <div class="column-three">
+        <a href="#">Install Guide</a>
+      </div>
+    </div>
+    <div class="icons">
+      <div class="fb-icon-container icon-container">
+        <img src="./images/icon-facebook.svg" alt="fb icon">
+      </div>
+      <div class="twitter-icon-container icon-container">
+        <img src="./images/icon-twitter.svg" alt="twitter icon">
+      </div>
+      <div class="ig-icon-container icon-container">
+        <img src="./images/icon-instagram.svg" alt="ig icon">
+      </div>
+    </div>
   </footer>
 </body>
 </html>

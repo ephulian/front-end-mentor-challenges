@@ -50,7 +50,16 @@ p {
   padding: 1.1rem 0rem;
   line-height: 1.75rem;
   margin: 0 auto 1.75rem auto;
-  max-width: 800px;
+  max-width: 650px;
+}
+
+.max-width {
+  max-width: 85vw;
+  margin: 0 auto;
+}
+
+.icon {
+  height: 108px;
 }
 
 @media screen and (min-width: 768px) {
@@ -142,31 +151,133 @@ SNIPPETS
  */
 
 @media screen and (min-width: 1024px) {
-  .imac {
-    position: relative;
+  .snippets {
+    margin-top: 4rem;
+    max-height: 50vh;
+    display: flex;
+    /* border: 2px solid red; */
+    align-items: center;
   }
 
-  .imac-img {
-    float: left;
-    position: absolute;
-    transform: translateX(-5%);
-    object-fit: cover;
-    border: 2px solid red;
-  }
-
-  .snippet-container > .info > .title,
-  .text {
+  .snippet-title,
+  .snippet-text {
     text-align: left;
   }
 
+  .snippet-container > .snippet {
+    max-width: 22rem;
+  }
+
   .imac {
-    max-width: 50vw;
+    position: relative;
+    transform: translateX(-15%);
+    flex: 1;
+  }
+
+  .imac-img {
+    object-fit: cover;
   }
 
   .snippet-container {
+    flex: 1;
+    /* border: 2px solid blue; */
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* align-content: center; */
+    justify-content: flex-end;
+  }
+
+  /*
+===================================================================
+WORKFLOW
+=================================================================== 
+ */
+
+  .workflow-container {
+    display: flex;
+  }
+
+  .workflow-container > * {
+    flex: 1;
+  }
+
+  .workflow-container > .info > .text {
+    padding: 1rem;
+  }
+
+  .sponsors-container {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .snippet-container > * {
+    flex: 1;
+  }
+}
+
+/*
+===================================================================
+FOOTER
+=================================================================== 
+ */
+
+.footer {
+  /* max-width: 55vw; */
+  margin: 0 auto;
+  background: rgb(247, 247, 247);
+}
+
+.footer a {
+  color: var(--clr-secondary-light);
+  font-size: 1.2rem;
+  line-height: 4rem;
+  display: block;
+}
+
+.footer-icon-container {
+  width: 60px;
+  margin: 0 auto;
+}
+
+.icon-container {
+  display: inline;
+  padding: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: row;
+    height: 10rem;
+    width: 100vw;
+  }
+
+  .footer img {
+    padding: 0;
+  }
+
+  .footer a {
+    padding-right: 4rem;
+    margin: -1rem 0;
+  }
+
+  .footer-icon-container {
+    flex: 1;
+  }
+
+  .connections {
+    display: flex;
+    flex-direction: row;
+    flex: 2;
+    text-align: left;
+  }
+
+  .icons {
+    flex: 1;
+  }
+
+  .footer-icon {
+    width: 60px;
   }
 }
