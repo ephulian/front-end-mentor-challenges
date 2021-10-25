@@ -1,0 +1,91 @@
+/* font-family: 'Bai Jamjuree', sans-serif; */
+:root {
+  font-family: "Bai Jamjuree", sans-serif;
+  text-align: center;
+  --clr-primary: hsl(171, 66%, 44%);
+  --clr-primary-light: hsl(233, 100%, 69%);
+  --clr-secondary: hsl(210, 10%, 33%);
+  --clr-secondary-light: hsl(201, 11%, 66%);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.section-center {
+  padding: 4rem 2.1rem;
+}
+
+img {
+  display: contain;
+  max-width: 100%;
+  padding-top: 1.75rem;
+  padding-bottom: 3rem;
+}
+
+h1 {
+  font-size: 2rem;
+  color: var(--clr-secondary);
+}
+
+h2 {
+  font-size: 1.75rem;
+  color: var(--clr-secondary);
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: var(--clr-secondary);
+}
+
+p {
+  font-size: 1rem;
+  color: var(--clr-secondary-light);
+  padding: 1.1rem 0rem;
+  line-height: 1.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.button {
+  padding: 1rem 0;
+  color: white;
+  border-radius: 1.5rem;
+  display: block;
+  margin-bottom: 1.5rem;
+  font-family: "Bai Jamjuree", sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 1px 2px 2px var(--clr-secondary);
+}
+
+.ios {
+  background: var(--clr-primary);
+}
+
+.mac {
+  background: var(--clr-primary-light);
+}
+
+/*
+===================================================================
+BANNER 
+=================================================================== 
+ */
+
+.banner {
+  background: url("./images/bg-header-mobile.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.logo-container {
+  padding: 4rem;
+}
+
+/*
+===================================================================
+SNIPPETS 
+=================================================================== 
+ */
