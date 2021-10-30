@@ -102,6 +102,10 @@ p {
   width: 20rem;
 }
 
+.button:hover {
+  opacity: 0.6;
+}
+
 .ios {
   background: var(--clr-primary);
 }

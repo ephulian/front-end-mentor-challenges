@@ -1,0 +1,371 @@
+/* font-family: 'Open Sans', sans-serif; */
+/* font-family: 'Raleway', sans-serif; */
+
+:root {
+  --clr-dark-blue: hsl(243, 87%, 12%);
+  --clr-desat-blue: hsl(238, 22%, 44%);
+  --clr-bright-blue: hsl(224, 93%, 58%);
+  --clr-mod-cyan: hsl(170, 45%, 43%);
+  --clr-gray-blue: hsl(240, 75%, 98%);
+  --clr-light-gray: hsl(0, 0%, 75%);
+  --ff-headings: 'Raleway', sans-serif;
+  --ff-body: 'Open Sans', sans-serif;
+  --transition: all 0.3s linear;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--ff-body);
+}
+
+h1 {
+  font-size: 1.5rem;
+  color: var(--clr-dark-blue);
+  line-height: 2.25rem;
+}
+
+h2 {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--clr-dark-blue);
+  line-height: 1.4rem;
+}
+
+@media screen and (min-width: 1024px) {
+  h1 {
+    font-size: 2.5rem;
+    line-height: 4rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+  }
+
+  .btn {
+    font-size: 0.95rem;
+  }
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--ff-headings);
+}
+
+a {
+  text-decoration: none;
+  color: var(--clr-dark-blue);
+}
+
+.btn,
+.form-control {
+  font-family: inherit;
+  padding: 0.5rem 3rem;
+  width: 90%;
+}
+
+.form-control {
+  padding: 0.5rem 6rem 0.5rem 0.5rem;
+  color: var(--clr-light-gray);
+}
+
+.btn {
+  color: white;
+  background: var(--clr-bright-blue);
+  box-shadow: 3px 3px 5px hsl(0, 0%, 75%);
+  border: 2px solid var(--clr-bright-blue);
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: var(--transition);
+  margin-top: 1rem;
+}
+
+.btn:hover {
+  box-shadow: none;
+}
+
+/* 
+========================================================================
+BANNER
+========================================================================
+*/
+
+.banner {
+  padding: 1.25rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.navbar {
+  justify-self: flex-end;
+}
+
+.logo {
+  flex: 1;
+}
+
+.logo-img {
+  max-width: 25vw;
+  object-fit: cover;
+}
+
+.navbar a {
+  padding: 0 0.75rem;
+}
+
+@media screen and (min-width: 768px) {
+  .section-center {
+    padding: 5vw;
+    margin: 0 auto;
+    max-width: 1440px;
+  }
+
+  .logo-img {
+    max-width: 10vw;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .banner {
+    font-size: 1rem;
+  }
+}
+
+/* 
+========================================================================
+SECTION ONE
+========================================================================
+*/
+
+.section-one {
+  display: flex;
+  flex-direction: column-reverse;
+  flex: 0 0 50%;
+  padding: 4rem 1rem;
+}
+
+.section-one-img {
+  max-width: 100%;
+}
+
+.info {
+  text-align: center;
+}
+
+.title,
+.text,
+.get-started {
+  padding-top: 2rem;
+}
+
+.text {
+  max-width: 80vw;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 1024px) {
+  .section-one {
+    flex-direction: row;
+    align-content: center;
+    /* padding: 0; */
+    padding: 5vw;
+    margin: 0 auto;
+    max-width: 1440px;
+  }
+
+  .section-one .info {
+    text-align: left;
+    width: 80%;
+    padding-top: 2rem;
+  }
+
+  .section-one .text {
+    max-width: 90%;
+    margin: 0;
+  }
+
+  .section-one-img {
+    object-fit: contain;
+    padding: 2rem;
+  }
+
+  .get-started {
+    display: flex;
+    max-width: 40vw;
+  }
+
+  .form-control {
+    min-width: 60%;
+    padding: 0.75rem 6rem 0.75rem 0.75rem;
+  }
+
+  .btn-get-started {
+    margin: 0 1rem;
+    flex-shrink: 1;
+  }
+}
+
+/* 
+========================================================================
+SECTION TWO
+========================================================================
+*/
+
+.section-two {
+  background: var(--clr-gray-blue);
+  padding-bottom: 3rem;
+}
+
+.section-background-image {
+  width: 100vw;
+  height: 10rem;
+  background: url('./images/bg-curve-mobile.svg');
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
+}
+
+.section-two-img {
+  max-width: 100%;
+  padding: 2rem;
+}
+
+.section-two .title {
+  font-size: 0.975rem;
+  color: var(--clr-dark-blue);
+}
+
+.section-two .text {
+  margin: 0 auto;
+  max-width: 85vw;
+  padding: 1rem 0;
+  text-align: left;
+  color: var(--clr-desat-blue);
+  font-size: 0.875rem;
+}
+
+.how-fylo-works {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.8rem;
+  color: green;
+  text-decoration: underline;
+}
+
+.how-fylo-works > a {
+  color: green;
+  margin-bottom: 5rem;
+}
+
+.how-fylo-works .arrow {
+  color: green;
+}
+
+.testimonal {
+  max-width: 300px;
+  max-height: 180px;
+  background: white;
+  box-shadow: -2px -2px 8px rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+  margin: 2rem auto;
+}
+
+.testimonal-text {
+  font-weight: 400;
+  font-size: 0.7rem;
+  line-height: 1.2rem;
+  padding-bottom: 0.5rem;
+}
+
+.avatar {
+  padding: 0.3rem 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.avatar-container {
+  max-width: 1.5rem;
+}
+
+.testimonal-avatar {
+  object-fit: contain;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.testimonal-avatar-details .name {
+  font-size: 0.75rem;
+}
+
+.testimonal-avatar-details .position {
+  font-size: 0.5rem;
+}
+
+.testimonal-avatar-details {
+  padding-left: 0.5rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .section-background-image {
+    background: url('./images/bg-curve-desktop.svg');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    margin: 0;
+    padding: 0;
+  }
+
+  .section-two {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 5vw;
+    margin: 0 auto;
+    max-width: 1440px;
+    flex: 1 1 auto;
+  }
+
+  .section-two-img-container {
+    display: flex;
+  }
+
+  .section-two-img {
+    padding: 0;
+    object-fit: contain;
+  }
+
+  .section-two .info {
+    flex-grow: 1;
+    width: 50vw;
+    text-align: left;
+  }
+
+  .section-two .title {
+    font-size: 2.35rem;
+    padding-bottom: 1rem;
+  }
+
+  .section-two .text {
+    max-width: 75%;
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .how-fylo-works {
+    text-align: left;
+    padding: 1rem 0;
+    font-size: 1.1rem;
+  }
+
+  .testimonal {
+    margin: 2rem 0;
+  }
+}
