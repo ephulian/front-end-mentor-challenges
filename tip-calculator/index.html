@@ -2,53 +2,81 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="./style.css">
-  <title>Frontend Mentor | Tip calculator app</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <title>Tip Calculator</title>
   <style>
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <section class="splitter">
-        <article class="title">
+        <!-- TITLE -->
+        <article class="title-article">
             <div class="title-container">
-                <h1>SPLITTER</h1>
+                <h1 class="title">SPLI<br/>TTER</h1>
             </div>
         </article>
-        <article class="input">
-
+        <!-- END OF TITLE -->
+        <!-- CALCULATOR -->
+        <article class="calculator-article">
+            <!-- USER INPUT -->
+            <div class="user-input">
+                <div class="bill">
+                    <h2>Bill</h2>
+                    <img src="./images/icon-dollar.svg" alt="$" class="icon">
+                    <input type="text" class="bill-input" placeholder="0">
+                </div>
+                <div class="select-tip">
+                    <h2>Select Tip %</h2>
+                    <div class="options-container">
+                        <div class="option">5%</div>
+                        <div class="option">10%</div>
+                        <div class="option">15%</div>
+                        <div class="option">25%</div>
+                        <div class="option">50%</div>
+                        <input type="text" class="custom-option" placeholder="Custom">
+                    </div>
+                </div>
+                <div class="people">
+                    <h2>Number of people</h2>
+                    <img src="./images/icon-person.svg" alt="P" class="icon">
+                    <input type="text" class="number-of-people-input" placeholder="0">
+                </div>
+            </div>
+            <!-- END OF USER INPUT -->
+            <!-- USER OUTPUT -->
+            <div class="user-output">
+                <div class="output-amount-container">
+                    <div class="output-amount">
+                        <div class="tip-amount-container">
+                            <div class="tip-amount">
+                                <div class="tip-text-container">
+                                    <h2 class="tip">Tip Amount</h2>
+                                    <h3>/person</h3>
+                                </div>
+                                <div class="tip-value">$0.00</div>
+                            </div>
+                            <div class="tip-amount">
+                                <div class="tip-text-container">
+                                    <h2 class="tip">Total</h2>
+                                    <h3>/person</h3>
+                                </div>
+                                <div class="tip-value">$0.00</div>
+                            </div>
+                        </div>
+                        <button class="reset-btn">RESET</button>
+                    </div>
+                </div>
+            </div>
+            <!-- END OF USER OUTPUT -->
         </article>
-        <article class="output"></article>
+        <!-- END OF CALCULATOR -->
     </section>
-  Bill
-
-  Select Tip %
-  5%
-  10%
-  15%
-  25%
-  50%
-  Custom
-
-  Number of People
-
-  Tip Amount
-  / person
-
-  Total
-  / person
-
-  Reset
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
 </body>
 </html>
