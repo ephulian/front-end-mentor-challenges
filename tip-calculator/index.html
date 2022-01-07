@@ -34,14 +34,24 @@
                 </div>
                 <div class="select-tip">
                     <h2>Select Tip %</h2>
-                    <div class="options-container">
-                        <div id="option5"class="option">5%</div>
+                    <form action="">
+                        <datalist type="text" id="tip-option-list" name="percentage" class="custom-select">
+                            <option value="5" id="option5" class="option">5%</option>
+                            <option value="10" id="option10" class="option">10%</option>
+                            <option value="15" id="option15" class="option">15%</option>
+                            <option value="25" id="option25" class="option">25%</option>
+                            <option value="50" id="option50" class="option">50%</option>
+                            <option value="custom-option" id="custom-container"><input type="number" id="custom" class="option" placeholder="Custom" list="tip-option-list"></option>
+                        </datalist>
+                    </form>
+                    <!-- <div class="options-container">
+                        <div id="option5" class="option">5%</div>
                         <div id="option10" class="option">10%</div>
                         <div id="option15" class="option">15%</div>
                         <div id="option25" class="option">25%</div>
                         <div id="option50" class="option">50%</div>
-                        <input type="number" id="custom" class="custom-option" placeholder="Custom">
-                    </div>
+                        <div id="option-custom"><input type="number" id="custom" class="custom-option" placeholder="Custom"></div>
+                    </div> -->
                 </div>
                 <div class="people">
                     <h2>Number of people</h2>
@@ -81,3 +91,12 @@
     <script src="./app.js"></script>
 </body>
 </html>
+
+                        <!-- <select>
+                            <option value="5" id="option5" class="option">5%</option>
+                            <option value="10" id="option10" class="option">10%</option>
+                            <option value="15" id="option15" class="option">15%</option>
+                            <option value="25" id="option25" class="option">25%</option>
+                            <option value="50" id="option50" class="option">50%</option>
+                            <option value="custom"><input type="number" id="custom" class="custom-option" placeholder="Custom"></option>
+                        </select> -->

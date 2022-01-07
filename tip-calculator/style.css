@@ -73,6 +73,12 @@ input {
   color: var(--clr-light-grayish-cyan-1);
   text-align: end;
   padding: 0.35rem;
+  outline: none;
+}
+
+input:focus {
+  outline: var(--clr-strong-cyan);
+  border: 2px solid var(--clr-strong-cyan);
 }
 
 ::placeholder {
@@ -94,13 +100,13 @@ input {
     padding-right: 0;
   }
 
-  .custom-option {
+  #custom {
     font-size: 1.5rem;
   }
 
-  .custom-option::placeholder {
+  #custom::placeholder {
     font-size: 1.25rem;
-    padding-right: 0;
+    margin-right: -2rem;
   }
 }
 
@@ -159,18 +165,43 @@ INPUT
   background-color: var(--clr-very-dark-cyan);
   font-size: 1.5rem;
   font-weight: bold;
-  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: 0.5rem; */
   border-radius: 7px;
   color: var(--clr-white);
   height: 100%;
+  height: auto;
+  width: auto;
+  transition: all 0.2s linear;
 }
 
-.custom-option {
+#custom-container {
+  height: 400px;
+}
+
+#custom {
   height: 100%;
-  border-radius: 7px;
+  width: 100%;
+  border-radius: 5px;
   text-align: end;
+  background-color: var(--clr-light-grayish-cyan-1);
   color: var(--clr-very-dark-cyan);
   font-weight: 600;
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+#custom::placeholder {
+  text-align: end;
+  margin-right: -2rem;
+}
+
+.option-selected {
+  background-color: var(--clr-strong-cyan);
+  transition: all 0.1 linear;
 }
 
 .people {
@@ -226,6 +257,10 @@ OUTPUT
   opacity: 25%;
 }
 
+.reset-btn:active {
+  background-color: var(--clr-light-grayish-cyan);
+}
+
 /* 
 MEDIA QUERIES
 =======================================
@@ -275,7 +310,7 @@ MEDIA QUERIES
 
   .options-container {
     grid-template-columns: repeat(3, 1fr);
-    height: auto;
+    height: 135px;
   }
 
   .people {
@@ -286,4 +321,10 @@ MEDIA QUERIES
   .icon {
     height: 26px;
   }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
