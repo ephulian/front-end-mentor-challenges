@@ -30,23 +30,23 @@
                 <div class="bill">
                     <h2>Bill</h2>
                     <img src="./images/icon-dollar.svg" alt="$" class="icon">
-                    <input type="text" class="bill-input" placeholder="0">
+                    <input type="number" id="bill-input" class="bill-input" placeholder="0">
                 </div>
                 <div class="select-tip">
                     <h2>Select Tip %</h2>
                     <div class="options-container">
-                        <div class="option">5%</div>
-                        <div class="option">10%</div>
-                        <div class="option">15%</div>
-                        <div class="option">25%</div>
-                        <div class="option">50%</div>
-                        <input type="text" class="custom-option" placeholder="Custom">
+                        <div id="option5"class="option">5%</div>
+                        <div id="option10" class="option">10%</div>
+                        <div id="option15" class="option">15%</div>
+                        <div id="option25" class="option">25%</div>
+                        <div id="option50" class="option">50%</div>
+                        <input type="number" id="custom" class="custom-option" placeholder="Custom">
                     </div>
                 </div>
                 <div class="people">
                     <h2>Number of people</h2>
                     <img src="./images/icon-person.svg" alt="P" class="icon">
-                    <input type="text" class="number-of-people-input" placeholder="0">
+                    <input type="number" id="people" class="number-of-people-input" placeholder="0">
                 </div>
             </div>
             <!-- END OF USER INPUT -->
@@ -60,17 +60,17 @@
                                     <h2 class="tip">Tip Amount</h2>
                                     <h3>/person</h3>
                                 </div>
-                                <div class="tip-value">$0.00</div>
+                                <div id="tip-amount" class="tip-value">$0.00</div>
                             </div>
                             <div class="tip-amount">
                                 <div class="tip-text-container">
                                     <h2 class="tip">Total</h2>
                                     <h3>/person</h3>
                                 </div>
-                                <div class="tip-value">$0.00</div>
+                                <div id="tip-total" class="tip-value">$0.00</div>
                             </div>
                         </div>
-                        <button class="reset-btn">RESET</button>
+                        <button id="reset-btn" class="reset-btn">RESET</button>
                     </div>
                 </div>
             </div>
@@ -78,5 +78,6 @@
         </article>
         <!-- END OF CALCULATOR -->
     </section>
+    <script src="./app.js"></script>
 </body>
 </html>
