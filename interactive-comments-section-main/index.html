@@ -6,21 +6,40 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   
-  <title>Frontend Mentor | Interactive comments section</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <title>Interactive comments section</title>
+  <link rel="stylesheet" href="./styles.css">
   <style>
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
 </head>
 <body>
-
-  <!-- Pull dynamic content from the data.json file -->
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+  <div class="comment-container">
+    <div class="score">
+      <div class="score-btn-container">
+        <h1 class="up">+</h1>
+      </div>
+      <h1 class="current-score">12</h1>
+      <div class="score-btn-container">
+        <h1 class="down">-</h1>
+      </div>
+    </div>
+    <div class="main-section">
+      <div class="user">
+        <div class="user-info">
+          <div class="user-img-container">
+            <img class="user-img"src="./images/avatars/image-amyrobson.webp" alt="profile photo">
+          </div>
+          <h2 class="username">
+            Amy Robson
+          </h2>
+          <h2 class="created-at">1 month ago</h2>
+        </div>
+        <h1 class="reply">Reply</h1>
+      </div>
+      <p class="comment-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae cupiditate quo perferendis expedita asperiores laudantium odio nulla, officiis, necessitatibus saepe culpa esse exercitationem ex corrupti. Facilis voluptas a ab cum ipsa quod ratione minima impedit.</p>
+    </div>
   </div>
+  <script type="module" src="./app.js"></script>
 </body>
 </html>

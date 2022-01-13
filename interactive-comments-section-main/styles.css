@@ -1,0 +1,82 @@
+:root {
+	--clr-pale-purple: rgb(220, 212, 237);
+	--clr-deep-purple: rgb(62, 2, 62);
+	--font-family: 'Verdana';
+}
+
+body {
+	background-color: var(--clr-pale-purple);
+}
+
+h2 {
+	font-size: 1rem;
+}
+
+h1 {
+	font-size: 1.5rem;
+}
+
+img {
+	height: 100%;
+}
+
+.comment-container {
+	display: grid;
+	grid-template-columns: 60px auto;
+	background-color: white;
+	padding: 30px;
+	border-radius: 15px;
+	max-width: 60%;
+	margin: 1rem auto;
+}
+
+.score {
+	background-color: var(--clr-pale-purple);
+	text-align: center;
+	border-radius: 25px;
+	width: auto;
+	color: var(--clr-deep-purple);
+	height: auto;
+}
+
+.main-section {
+	padding-left: 30px;
+}
+
+.user {
+	display: flex;
+	justify-content: space-between;
+}
+
+.user-img {
+	height: 100%;
+}
+
+.user-info {
+	height: 25px;
+	display: grid;
+	grid-template-columns: repeat(3, auto);
+	gap: 15px;
+	align-items: center;
+}
+
+.score-btn-container {
+	height: auto;
+}
+
+.score-btn-container:active {
+	background: var(--clr-deep-purple);
+}
+
+.user-img-container {
+	height: 40px;
+}
+
+.reply {
+	font-size: 1.25rem;
+	color: var(--clr-deep-purple);
+}
+
+.reply:active {
+	background-color: var(--clr-deep-purple);
+}
