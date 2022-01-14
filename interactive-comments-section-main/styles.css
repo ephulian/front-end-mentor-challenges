@@ -1,3 +1,6 @@
+/* 
+GLOBAL ==========================
+*/
 :root {
 	--clr-pale-purple: rgb(220, 212, 237);
 	--clr-deep-purple: rgb(62, 2, 62);
@@ -20,14 +23,40 @@ img {
 	height: 100%;
 }
 
+/* 
+COMMENT ==========================
+*/
+
+.section-center {
+	width: 800px;
+	margin: 0px auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 .comment-container {
 	display: grid;
 	grid-template-columns: 60px auto;
 	background-color: white;
 	padding: 30px;
 	border-radius: 15px;
-	max-width: 60%;
-	margin: 1rem auto;
+	max-width: 100%;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+	/* margin: 1rem auto; */
+}
+
+.reply-container {
+	display: grid;
+	grid-template-columns: 60px auto;
+	background-color: white;
+	padding: 30px;
+	border-radius: 15px;
+	max-width: 85%;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+	align-self: end;
 }
 
 .score {
@@ -80,3 +109,7 @@ img {
 .reply:active {
 	background-color: var(--clr-deep-purple);
 }
+
+/* 
+REPLY ======================================
+*/
