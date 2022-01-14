@@ -227,11 +227,24 @@ class addComment {
 		this.newReplyTextArea.innerHTML = `@${this.comment.user.username}`;
 		this.newReplyTextAreaContainer.appendChild(this.newReplyTextArea);
 
+		// Button container
+		this.buttonContainer = document.createElement('div');
+		this.buttonContainer.classList.add('reply-buttons-container');
+		this.newReplyTextAreaContainer.appendChild(this.buttonContainer);
+
 		// Reply send button
-		this.newReplySendButton = document.createElement('h1');
+		this.newReplySendButton = document.createElement('button');
+		this.newReplySendButton.setAttribute('type', 'submit');
 		this.newReplySendButton.classList.add('send-reply-button');
 		this.newReplySendButton.innerHTML = 'REPLY';
-		this.newReplyTextAreaContainer.appendChild(this.newReplySendButton);
+		this.buttonContainer.appendChild(this.newReplySendButton);
+
+		// Reply cancel button
+		this.newReplyCancelButton = document.createElement('button');
+		// this.newReplyCancelButton.setAttribute('type', 'submit');
+		this.newReplyCancelButton.classList.add('cancel-reply-button');
+		this.newReplyCancelButton.innerHTML = 'CANCEL';
+		this.buttonContainer.appendChild(this.newReplyCancelButton);
 
 		this.sectionCenter.appendChild(this.newReplyTextInput);
 
@@ -258,6 +271,34 @@ class addComment {
 					'Please enter a reply!'
 				);
 				// throw new Error('nothing in there');
+			}
+		});
+
+		this.newReplyTextArea.addEventListener('keypress', (e) => {
+			if (e.key == 'Enter') {
+				const replyText = this.newReplyTextArea.value;
+				const fullReply = {
+					id: localData.comments.length + 1,
+					content: replyText,
+					createdAt: 'Now',
+					score: 0,
+					user: localData.currentUser,
+					replies: [],
+				};
+				if (fullReply.content) {
+					this.comment.replies.push(fullReply);
+					// localData.comments[this.comment.id - 1].replies.push(fullReply);
+					this.sectionCenter.removeChild(this.newReplyTextInput);
+					localStorage.setItem('data', JSON.stringify(localData));
+					location.reload();
+				} else {
+					this.newReplyTextArea.style.border = '2px solid red';
+					this.newReplyTextArea.setAttribute(
+						'placeholder',
+						'Please enter a reply!'
+					);
+					// throw new Error('nothing in there');
+				}
 			}
 		});
 	}

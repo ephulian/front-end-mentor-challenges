@@ -148,14 +148,31 @@ REPLY ======================================
 	height: auto;
 }
 
+.reply-buttons-container {
+	display: flex;
+	flex-direction: column;
+}
+
 .send-reply-button {
 	background-color: var(--clr-deep-purple);
 	border-radius: 8px;
 	color: white;
-	font-size: 1.25rem;
+	font-size: 0.95rem;
 	text-align: center;
-	padding: 1rem;
+	padding: 0.65rem;
 	margin-top: 0;
+	border: none;
+}
+
+.cancel-reply-button {
+	background-color: rgb(161, 49, 50);
+	border-radius: 8px;
+	color: white;
+	font-size: 0.95rem;
+	text-align: center;
+	padding: 0.65rem;
+	margin-top: 10px;
+	border: none;
 }
 
 .send-reply-button:active {
