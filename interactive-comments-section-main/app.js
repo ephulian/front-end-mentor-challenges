@@ -6,7 +6,8 @@ resetBTN12345.addEventListener('click', () => {
 	location.reload();
 });
 
-const textInputFields = document.querySelectorAll('.new-reply-text-input');
+// const textInputFields = document.querySelectorAll('.new-reply-text-input');
+// const allCurrentComments = document.querySelectorAll('.section-center');
 
 let localData = JSON.parse(localStorage.getItem('data'));
 // let localData = data;
@@ -164,7 +165,6 @@ class addComment {
 
 		// Reply interactivity
 		this.replyButton.addEventListener('click', () => {
-			console.log(this.comment.replies);
 			this.addReply();
 		});
 
@@ -189,6 +189,16 @@ class addComment {
 	// }
 
 	addReply() {
+		const textInputFields = document.querySelectorAll('.new-reply-text-input');
+		const allCurrentComments = document.querySelectorAll('.section-center');
+		const oneComment = document.querySelector('.new-reply-text-input');
+		if (textInputFields.length > 0) {
+			allCurrentComments.forEach((comment) => {
+				if (comment.lastChild == oneComment) {
+					comment.removeChild(oneComment);
+				}
+			});
+		}
 		// New reply text input
 		this.newReplyTextInput = document.createElement('div');
 		this.newReplyTextInput.classList.add('new-reply-text-input');
@@ -255,11 +265,7 @@ class addComment {
 
 let allReplies = [];
 
-console.log(localData.comments[0].replies);
-
 // let localData = JSON.parse(localStorage.getItem('data'));
-
-console.log(localData);
 
 localData.comments.forEach((comment) => {
 	new addComment(comment, 'comment');
