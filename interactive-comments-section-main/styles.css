@@ -1,6 +1,12 @@
 /* 
 GLOBAL ==========================
 */
+* {
+	/* margin: 0; */
+	/* padding: 0; */
+	box-sizing: border-box;
+}
+
 :root {
 	--clr-pale-purple: rgb(220, 212, 237);
 	--clr-deep-purple: rgb(62, 2, 62);
@@ -113,3 +119,39 @@ COMMENT ==========================
 /* 
 REPLY ======================================
 */
+
+.new-reply-text-input {
+	width: 100%;
+}
+
+.new-reply-text-area {
+	display: flex;
+	align-items: flex-start;
+}
+
+.comment-text-area {
+	flex-grow: 1;
+	margin: 0 1rem;
+	border-radius: 8px;
+	padding: 0.5rem 1rem;
+	font-size: 0.75;
+}
+
+.reply-user-img {
+	width: 100%;
+	height: auto;
+}
+
+.send-reply-button {
+	background-color: var(--clr-deep-purple);
+	border-radius: 8px;
+	color: white;
+	font-size: 1.25rem;
+	text-align: center;
+	padding: 1rem;
+	margin-top: 0;
+}
+
+.send-reply-button:active {
+	background-color: var(--clr-pale-purple);
+}
