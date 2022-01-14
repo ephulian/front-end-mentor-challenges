@@ -1,8 +1,39 @@
 import data from './data.json' assert { type: 'json' };
 
+const resetBTN12345 = document.getElementById('reset-btn');
+resetBTN12345.addEventListener('click', () => {
+	localStorage.setItem('data', JSON.stringify(data));
+	location.reload();
+});
+
+const textInputFields = document.querySelectorAll('.new-reply-text-input');
+
+let localData = JSON.parse(localStorage.getItem('data'));
+// let localData = data;
+
+// console.log(localData.comments);
+
 function logThis() {
 	console.log(this);
 }
+
+const randomComment = {
+	id: 1,
+	content:
+		"Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've nailed the design and the responsiveness at various breakpoints works really well.",
+	createdAt: '1 month ago',
+	score: 12,
+	user: {
+		image: {
+			png: './images/avatars/image-amyrobson.png',
+			webp: './images/avatars/image-amyrobson.webp',
+		},
+		username: 'amyrobson',
+	},
+	replies: [],
+};
+
+// localStorage.setItem('data', JSON.stringify())
 
 class addComment {
 	constructor(comment, type) {
@@ -117,6 +148,7 @@ class addComment {
 
 		// Comment content
 		this.commentContentText = document.createElement('p');
+		this.commentContentText.classList.add('comment-content');
 		this.mainSection.appendChild(this.commentContentText);
 		this.commentContentText.innerHTML = comment.content;
 
@@ -124,7 +156,7 @@ class addComment {
 		this.scoreUp = this.scoreUp.bind(this);
 		this.scoreDown = this.scoreDown.bind(this);
 		this.addReply = this.addReply.bind(this);
-		this.pushReply = this.pushReply.bind(this);
+		// this.pushReply = this.pushReply.bind(this);
 
 		// Score interactivity
 		this.up.addEventListener('click', this.scoreUp);
@@ -152,9 +184,9 @@ class addComment {
 		this.currentScore.innerHTML = this.comment.score;
 	}
 
-	pushReply(location, value) {
-		location.replies.push(value);
-	}
+	// pushReply(location, value) {
+	// 	location.replies.push(value);
+	// }
 
 	addReply() {
 		// New reply text input
@@ -170,7 +202,7 @@ class addComment {
 		// Reply user image
 		this.newReplyUserImage = document.createElement('img');
 		this.newReplyUserImage.classList.add('reply-user-img');
-		this.newReplyUserImage.src = data.currentUser.image.png;
+		this.newReplyUserImage.src = localData.currentUser.image.png;
 		this.newReplyImgContainer.appendChild(this.newReplyUserImage);
 
 		// Reply textarea container
@@ -196,16 +228,19 @@ class addComment {
 		this.newReplySendButton.addEventListener('click', () => {
 			const replyText = this.newReplyTextArea.value;
 			const fullReply = {
-				id: data.comments.length + 1,
+				id: localData.comments.length + 1,
 				content: replyText,
 				createdAt: 'Now',
 				score: 0,
-				user: data.currentUser,
+				user: localData.currentUser,
 				replies: [],
 			};
 			if (fullReply.content) {
 				this.comment.replies.push(fullReply);
+				// localData.comments[this.comment.id - 1].replies.push(fullReply);
 				this.sectionCenter.removeChild(this.newReplyTextInput);
+				localStorage.setItem('data', JSON.stringify(localData));
+				location.reload();
 			} else {
 				this.newReplyTextArea.style.border = '2px solid red';
 				this.newReplyTextArea.setAttribute(
@@ -220,23 +255,24 @@ class addComment {
 
 let allReplies = [];
 
-data.comments.forEach((comment) => {
+console.log(localData.comments[0].replies);
+
+// let localData = JSON.parse(localStorage.getItem('data'));
+
+console.log(localData);
+
+localData.comments.forEach((comment) => {
 	new addComment(comment, 'comment');
 	comment.replies.forEach((reply) => {
-		allReplies.push(new addComment(reply, 'reply'));
-		// new addComment(reply, 'reply');
+		new addComment(reply, 'reply');
 	});
 });
 
-console.log(allReplies);
-
-// data.comments.forEach((comment) => {
-// 	new addComment(comment, 'comment');
-// 	comment.replies.forEach((reply) => {
-// 		new addComment(reply, 'reply');
+// document.addEventListener('click', () => {
+// 	localData.comments.forEach((comment) => {
+// 		new addComment(comment, 'comment');
+// 		localData.replies.forEach((reply) => {
+// 			new addComment(reply, 'reply');
+// 		});
 // 	});
 // });
-
-document.addEventListener('click', () => {
-	console.log(currentReply);
-});

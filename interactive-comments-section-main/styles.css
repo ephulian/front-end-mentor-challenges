@@ -47,7 +47,7 @@ COMMENT ==========================
 	background-color: white;
 	padding: 30px;
 	border-radius: 15px;
-	max-width: 100%;
+	width: 100%;
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
 	/* margin: 1rem auto; */
@@ -59,7 +59,7 @@ COMMENT ==========================
 	background-color: white;
 	padding: 30px;
 	border-radius: 15px;
-	max-width: 85%;
+	width: 85%;
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
 	align-self: end;
@@ -76,6 +76,7 @@ COMMENT ==========================
 
 .main-section {
 	padding-left: 30px;
+	width: 100%;
 }
 
 .user {
@@ -116,12 +117,17 @@ COMMENT ==========================
 	background-color: var(--clr-deep-purple);
 }
 
+.comment-content {
+	width: auto;
+	/* max-width: 100%; */
+}
+
 /* 
 REPLY ======================================
 */
 
 .new-reply-text-input {
-	width: 100%;
+	width: 85%;
 }
 
 .new-reply-text-area {
