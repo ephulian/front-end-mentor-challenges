@@ -411,49 +411,70 @@ class addComment {
 			}
 		});
 
-		// this.newReplyTextArea.addEventListener('keypress', (e) => {
-		// 	if (e.key === 'Enter') {
-		// 		const replyText = this.newReplyTextArea.value;
-		// 		const fullReply = {
-		// 			id: localData.comments.length + 1,
-		// 			content: replyText,
-		// 			createdAt: 'Now',
-		// 			score: 0,
-		// 			user: localData.currentUser,
-		// 			replies: [],
-		// 		};
-		// 		if (fullReply.content) {
-		// 			this.comment.replies.push(fullReply);
-		// 			// localData.comments[this.comment.id - 1].replies.push(fullReply);
-		// 			this.sectionCenter.removeChild(this.newReplyTextInput);
-		// 			localStorage.setItem('data', JSON.stringify(localData));
-		// 			location.reload();
-		// 		} else {
-		// 			this.newReplyTextArea.style.border = '2px solid red';
-		// 			this.newReplyTextArea.setAttribute(
-		// 				'placeholder',
-		// 				'Please enter a reply!'
-		// 			);
-		// 			// throw new Error('nothing in there');
-		// 		}
-		// 	}
-		// });
+		this.newReplyTextArea.addEventListener('keypress', (e) => {
+			if (e.key == 'Enter') {
+				const replyText = this.newReplyTextArea.value;
+				const fullReply = {
+					// id: localData.comments.length + 1,
+					id: this.comment.id,
+					replyId:
+						this.comment.id +
+						localData.comments[this.comment.id - 1].replies.length,
+					content: replyText,
+					createdAt: 'Now',
+					score: 0,
+					user: localData.currentUser,
+					replies: [],
+				};
+
+				if (fullReply.content && this.type == 'comment') {
+					const indexOfCommentBeingRepliedTo = localData.comments.indexOf(
+						this.comment
+					);
+
+					localData.comments[indexOfCommentBeingRepliedTo].replies.push(
+						fullReply
+					);
+
+					this.sectionCenter.removeChild(this.newReplyTextInput);
+					localStorage.setItem('data', JSON.stringify(localData));
+					location.reload();
+				} else if (fullReply.content && this.type == 'reply') {
+					const indexOfReplyBeingRepliedTo = localData.comments[
+						this.comment.id - 1
+					].replies.indexOf(this.comment);
+
+					const parentObject = localData.comments.find((comment) => {
+						return (
+							comment.replies[indexOfReplyBeingRepliedTo] ==
+							localData.comments[this.comment.id - 1].replies[
+								indexOfReplyBeingRepliedTo
+							]
+						);
+					});
+
+					localData.comments[
+						localData.comments.indexOf(parentObject)
+					].replies.push(fullReply);
+
+					this.sectionCenter.removeChild(this.newReplyTextInput);
+					localStorage.setItem('data', JSON.stringify(localData));
+					location.reload();
+				} else {
+					this.newReplyTextArea.style.border = '2px solid red';
+					this.newReplyTextArea.setAttribute(
+						'placeholder',
+						'Please enter a reply!'
+					);
+				}
+			}
+		});
+
 		this.newReplyCancelButton.addEventListener('click', () => {
 			this.sectionCenter.removeChild(this.newReplyTextInput);
 		});
 	}
 }
-
-// document.addEventListener('keypress', (e) => {
-// 	// if (e.key == 'Esc') {
-// 	// 	this.sectionCenter.removeChild(this.newReplyTextInput);
-// 	// }
-// 	console.log(e.key);
-// });
-
-let allReplies = [];
-
-// let localDataToSort = JSON.parse(localStorage.getItem('data'));
 
 function byScore(a, b) {
 	return parseInt(a.score) - parseInt(b.score);
