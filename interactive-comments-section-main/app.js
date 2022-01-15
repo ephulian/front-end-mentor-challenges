@@ -1,5 +1,7 @@
 import data from './data.json' assert { type: 'json' };
 
+history.scrollRestoration = 'manual';
+
 const resetBTN12345 = document.getElementById('reset-btn');
 resetBTN12345.addEventListener('click', () => {
 	localStorage.setItem('data', JSON.stringify(data));
@@ -10,29 +12,10 @@ resetBTN12345.addEventListener('click', () => {
 // const allCurrentComments = document.querySelectorAll('.section-center');
 
 let localData = JSON.parse(localStorage.getItem('data'));
-// let localData = data;
 
-// console.log(localData.comments);
-
-function logThis() {
-	console.log(this);
-}
-
-const randomComment = {
-	id: 1,
-	content:
-		"Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've nailed the design and the responsiveness at various breakpoints works really well.",
-	createdAt: '1 month ago',
-	score: 12,
-	user: {
-		image: {
-			png: './images/avatars/image-amyrobson.png',
-			webp: './images/avatars/image-amyrobson.webp',
-		},
-		username: 'amyrobson',
-	},
-	replies: [],
-};
+// function logThis() {
+// 	console.log(this);
+// }
 
 // localStorage.setItem('data', JSON.stringify())
 
@@ -176,17 +159,15 @@ class addComment {
 
 	scoreUp() {
 		this.comment.score++;
+		localStorage.setItem('data', JSON.stringify(localData));
 		this.currentScore.innerHTML = this.comment.score;
 	}
 
 	scoreDown() {
 		this.comment.score--;
+		localStorage.setItem('data', JSON.stringify(localData));
 		this.currentScore.innerHTML = this.comment.score;
 	}
-
-	// pushReply(location, value) {
-	// 	location.replies.push(value);
-	// }
 
 	addReply() {
 		const textInputFields = document.querySelectorAll('.new-reply-text-input');
@@ -251,7 +232,8 @@ class addComment {
 		this.newReplySendButton.addEventListener('click', () => {
 			const replyText = this.newReplyTextArea.value;
 			const fullReply = {
-				id: localData.comments.length + 1,
+				// id: localData.comments.length + 1,
+				id: this.comment.id,
 				content: replyText,
 				createdAt: 'Now',
 				score: 0,
@@ -259,8 +241,8 @@ class addComment {
 				replies: [],
 			};
 			if (fullReply.content) {
-				this.comment.replies.push(fullReply);
-				// localData.comments[this.comment.id - 1].replies.push(fullReply);
+				// this.comment.replies.push(fullReply);
+				localData.comments[this.comment.id - 1].replies.push(fullReply);
 				this.sectionCenter.removeChild(this.newReplyTextInput);
 				localStorage.setItem('data', JSON.stringify(localData));
 				location.reload();
@@ -275,7 +257,7 @@ class addComment {
 		});
 
 		this.newReplyTextArea.addEventListener('keypress', (e) => {
-			if (e.key == 'Enter') {
+			if (e.key === 'Enter') {
 				const replyText = this.newReplyTextArea.value;
 				const fullReply = {
 					id: localData.comments.length + 1,
@@ -301,19 +283,64 @@ class addComment {
 				}
 			}
 		});
+		this.newReplyCancelButton.addEventListener('click', () => {
+			this.sectionCenter.removeChild(this.newReplyTextInput);
+		});
 	}
 }
 
+// document.addEventListener('keypress', (e) => {
+// 	// if (e.key == 'Esc') {
+// 	// 	this.sectionCenter.removeChild(this.newReplyTextInput);
+// 	// }
+// 	console.log(e.key);
+// });
+
 let allReplies = [];
 
-// let localData = JSON.parse(localStorage.getItem('data'));
+// let localDataToSort = JSON.parse(localStorage.getItem('data'));
 
-localData.comments.forEach((comment) => {
-	new addComment(comment, 'comment');
-	comment.replies.forEach((reply) => {
-		new addComment(reply, 'reply');
+function byScore(a, b) {
+	return parseInt(a.score) - parseInt(b.score);
+}
+
+function sortComments(data) {
+	data.forEach((element) => {
+		console.log(element);
 	});
-});
+}
+
+localData.comments
+	.sort(byScore)
+	.reverse()
+	.forEach((comment) => {
+		new addComment(comment, 'comment');
+		comment.replies
+			.sort(byScore)
+			.reverse()
+			.forEach((reply) => {
+				new addComment(reply, 'reply');
+			});
+	});
+// sortComments(localDataToSort.comments);
+
+// console.log(commentsOnly);
+
+// localData.comments[1].replies;
+// // console.log(arr);
+// localDataToSort.sort(byScore).reverse();
+// console.log(arr);
+
+// Array.from(localData).forEach((e) => {
+// 	console.log(e);
+// });
+
+// localData.comments.forEach((comment) => {
+// 	new addComment(comment, 'comment');
+// 	comment.replies.forEach((reply) => {
+// 		new addComment(reply, 'reply');
+// 	});
+// });
 
 // document.addEventListener('click', () => {
 // 	localData.comments.forEach((comment) => {
