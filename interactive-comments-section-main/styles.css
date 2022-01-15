@@ -113,6 +113,11 @@ COMMENT ==========================
 	color: var(--clr-deep-purple);
 }
 
+.delete {
+	font-size: 1.25rem;
+	color: rgb(161, 49, 50);
+}
+
 .reply:active {
 	background-color: var(--clr-deep-purple);
 }

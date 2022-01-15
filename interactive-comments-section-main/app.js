@@ -124,6 +124,14 @@ class addComment {
 		this.createdAt.classList.add('created-at');
 		this.createdAt.innerHTML = comment.createdAt;
 
+		if (localData.currentUser.username === this.comment.user.username) {
+			// Delete button
+			this.deleteButton = document.createElement('h1');
+			this.user.appendChild(this.deleteButton);
+			this.deleteButton.classList.add('delete');
+			this.deleteButton.innerHTML = 'delete';
+		}
+
 		// Reply button
 		this.replyButton = document.createElement('h1');
 		this.user.appendChild(this.replyButton);
