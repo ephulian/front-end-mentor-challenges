@@ -1,6 +1,9 @@
 import data from './data.json' assert { type: 'json' };
 
-history.scrollRestoration = 'manual';
+// history.scrollRestoration = 'manual';
+
+const newComment = document.querySelector('#new-comment');
+const newCommentSendBTN = document.querySelector('send');
 
 const resetBTN12345 = document.getElementById('reset-btn');
 resetBTN12345.addEventListener('click', () => {
@@ -8,16 +11,7 @@ resetBTN12345.addEventListener('click', () => {
 	location.reload();
 });
 
-// const textInputFields = document.querySelectorAll('.new-reply-text-input');
-// const allCurrentComments = document.querySelectorAll('.section-center');
-
 let localData = JSON.parse(localStorage.getItem('data'));
-
-// function logThis() {
-// 	console.log(this);
-// }
-
-// localStorage.setItem('data', JSON.stringify())
 
 class addComment {
 	constructor(comment, type) {
@@ -192,35 +186,32 @@ class addComment {
 		// this.down.addEventListener('click', this.scoreDown);
 
 		// Reply/Edit interactivity
-		this.replyButton.addEventListener(
-			'click',
-			() => {
-				if (this.replyButton.innerHTML === 'Reply') {
-					this.addReply();
-				} else {
-					console.log('edit');
-					this.textForEdit = document.createElement('textarea');
-					this.textForEdit.classList.add('comment-edit-area');
-					this.textForEdit.setAttribute('rows', 5);
-					this.textForEdit.innerHTML = this.commentContentText.innerHTML;
-					this.mainSection.removeChild(this.commentContentText);
-					this.mainSection.appendChild(this.textForEdit);
+		this.replyButton.addEventListener('click', () => {
+			if (this.replyButton.innerHTML === 'Reply') {
+				this.addReply();
+			} else {
+				console.log('edit');
+				this.replyButton.removeEventListener('click', () => {});
+				this.textForEdit = document.createElement('textarea');
+				this.textForEdit.classList.add('comment-edit-area');
+				this.textForEdit.setAttribute('rows', 5);
+				this.textForEdit.innerHTML = this.commentContentText.innerHTML;
+				this.mainSection.removeChild(this.commentContentText);
+				this.mainSection.appendChild(this.textForEdit);
 
-					this.updateButton = document.createElement('h1');
-					this.updateButton.classList.add('send-update-button');
-					this.updateButton.innerHTML = 'UPDATE';
-					this.mainSection.appendChild(this.updateButton);
+				this.updateButton = document.createElement('h1');
+				this.updateButton.classList.add('send-update-button');
+				this.updateButton.innerHTML = 'UPDATE';
+				this.mainSection.appendChild(this.updateButton);
 
-					this.updateButton.addEventListener('click', () => {
-						this.commentContentText.innerHTML = this.textForEdit.value;
-						this.mainSection.removeChild(this.textForEdit);
-						this.mainSection.removeChild(this.updateButton);
-						this.mainSection.appendChild(this.commentContentText);
-					});
-				}
-			},
-			{ once: true }
-		);
+				this.updateButton.addEventListener('click', () => {
+					this.commentContentText.innerHTML = this.textForEdit.value;
+					this.mainSection.removeChild(this.textForEdit);
+					this.mainSection.removeChild(this.updateButton);
+					this.mainSection.appendChild(this.commentContentText);
+				});
+			}
+		});
 
 		// Delete button functionality
 		this.sectionCenter.addEventListener('mouseover', () => {
@@ -278,7 +269,8 @@ class addComment {
 			});
 		}
 
-		document.body.appendChild(this.sectionCenter);
+		// document.body.appendChild(this.sectionCenter);
+		document.body.insertBefore(this.sectionCenter, newComment);
 		// this.addReply();
 	}
 
@@ -476,6 +468,11 @@ class addComment {
 	}
 }
 
+// function sendComment(){
+// 	const
+// }
+
+// Render all comments and replies in sorted by highest score
 function byScore(a, b) {
 	return parseInt(a.score) - parseInt(b.score);
 }
@@ -492,32 +489,3 @@ localData.comments
 				new addComment(reply, 'reply');
 			});
 	});
-
-// sortComments(localDataToSort.comments);
-
-// console.log(commentsOnly);
-
-// localData.comments[1].replies;
-// // console.log(arr);
-// localDataToSort.sort(byScore).reverse();
-// console.log(arr);
-
-// Array.from(localData).forEach((e) => {
-// 	console.log(e);
-// });
-
-// localData.comments.forEach((comment) => {
-// 	new addComment(comment, 'comment');
-// 	comment.replies.forEach((reply) => {
-// 		new addComment(reply, 'reply');
-// 	});
-// });
-
-// document.addEventListener('click', () => {
-// 	localData.comments.forEach((comment) => {
-// 		new addComment(comment, 'comment');
-// 		localData.replies.forEach((reply) => {
-// 			new addComment(reply, 'reply');
-// 		});
-// 	});
-// });

@@ -221,6 +221,7 @@ REPLY ======================================
 	padding: 0.65rem;
 	margin-top: 0;
 	border: none;
+	width: 100px;
 }
 
 .cancel-reply-button {
@@ -236,4 +237,20 @@ REPLY ======================================
 
 .send-reply-button:active {
 	background-color: var(--clr-pale-purple);
+}
+
+/* 
+New Comment
+*/
+
+.new-comment-container {
+	display: grid;
+	grid-template-columns: 60px auto;
+	background-color: white;
+	padding: 30px;
+	border-radius: 15px;
+	width: 100%;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+	/* margin: 1rem auto; */
 }
