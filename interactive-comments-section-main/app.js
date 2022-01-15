@@ -199,21 +199,26 @@ class addComment {
 
 		if (this.deleteButton) {
 			this.deleteButton.addEventListener('click', () => {
-				const indexOfObjectToBeDeleted = localData.comments[
-					this.comment.id - 1
-				].replies.indexOf(this.comment);
-				const commentObjectToBeDeleted =
-					localData.comments[this.comment.id - 1].replies[
-						localData.comments[this.comment.id - 1].replies.indexOf(
-							this.comment
-						)
-					];
-				const commentObjectToBeDeletedFrom =
-					localData.comments[this.comment.id - 1].replies;
-				commentObjectToBeDeletedFrom.splice(indexOfObjectToBeDeleted, 1);
-				localStorage.setItem('data', JSON.stringify(localData));
-				location.reload();
-				console.log('Comment deleted');
+				if (this.type == 'comment') {
+					const indexOfObjectToBeDeleted = localData.comments.indexOf(
+						this.comment
+					);
+					const commentObjectToBeDeletedFrom = localData.comments;
+					commentObjectToBeDeletedFrom.splice(indexOfObjectToBeDeleted, 1);
+					localStorage.setItem('data', JSON.stringify(localData));
+					location.reload();
+					console.log('Comment deleted');
+				} else if (this.type == 'reply') {
+					const indexOfObjectToBeDeleted = localData.comments[
+						this.comment.id - 1
+					].replies.indexOf(this.comment);
+					const commentObjectToBeDeletedFrom =
+						localData.comments[this.comment.id - 1].replies;
+					commentObjectToBeDeletedFrom.splice(indexOfObjectToBeDeleted, 1);
+					localStorage.setItem('data', JSON.stringify(localData));
+					location.reload();
+					console.log('Reply deleted');
+				}
 			});
 		}
 
