@@ -172,8 +172,24 @@ class addComment {
 		// this.pushReply = this.pushReply.bind(this);
 
 		// Score interactivity
-		this.up.addEventListener('click', this.scoreUp);
-		this.down.addEventListener('click', this.scoreDown);
+		this.score.addEventListener(
+			'click',
+			(e) => {
+				console.log(e.target);
+				switch (e.target) {
+					case this.up:
+						this.scoreUp();
+						break;
+					case this.down:
+						this.scoreDown();
+						break;
+				}
+			},
+			{ once: true }
+		);
+
+		// this.up.addEventListener('click', this.scoreUp);
+		// this.down.addEventListener('click', this.scoreDown);
 
 		// Reply interactivity
 		this.replyButton.addEventListener('click', () => {
@@ -240,7 +256,7 @@ class addComment {
 			});
 		}
 
-		// this.comment.replies.forEach((reply) => this.addReplies(reply));
+		// Edit button functionality
 
 		document.body.appendChild(this.sectionCenter);
 		// this.addReply();
