@@ -22,6 +22,7 @@ let localData = JSON.parse(localStorage.getItem('data'));
 class addComment {
 	constructor(comment, type) {
 		this.comment = comment;
+		this.type = type;
 
 		// Section Center
 		this.sectionCenter = document.createElement('section');
@@ -124,19 +125,39 @@ class addComment {
 		this.createdAt.classList.add('created-at');
 		this.createdAt.innerHTML = comment.createdAt;
 
+		// Reply/Delete buttons container
+		this.replyDeleteButtonsContainer = document.createElement('div');
+		this.replyDeleteButtonsContainer.classList.add(
+			'reply-delete-buttons-container'
+		);
+		this.user.appendChild(this.replyDeleteButtonsContainer);
+
+		// Delete button only for current users comments
 		if (localData.currentUser.username === this.comment.user.username) {
 			// Delete button
 			this.deleteButton = document.createElement('h1');
-			this.user.appendChild(this.deleteButton);
+			this.replyDeleteButtonsContainer.appendChild(this.deleteButton);
 			this.deleteButton.classList.add('delete');
-			this.deleteButton.innerHTML = 'delete';
+			this.deleteButton.innerHTML = 'Delete';
 		}
 
-		// Reply button
-		this.replyButton = document.createElement('h1');
-		this.user.appendChild(this.replyButton);
-		this.replyButton.classList.add('reply');
-		this.replyButton.innerHTML = 'Reply';
+		if (localData.currentUser.username === this.comment.user.username) {
+			// Reply button
+			this.replyButton = document.createElement('h1');
+			this.replyDeleteButtonsContainer.appendChild(this.replyButton);
+			this.replyButton.classList.add('reply');
+			this.replyButton.innerHTML = 'Edit';
+		} else {
+			this.replyButton = document.createElement('h1');
+			this.replyDeleteButtonsContainer.appendChild(this.replyButton);
+			this.replyButton.classList.add('reply');
+			this.replyButton.innerHTML = 'Reply';
+		}
+
+		// this.replyButton = document.createElement('h1');
+		// this.user.appendChild(this.replyButton);
+		// this.replyButton.classList.add('reply');
+		// this.replyButton.innerHTML = 'Reply';
 
 		// Comment content
 		this.commentContentText = document.createElement('p');
@@ -156,8 +177,33 @@ class addComment {
 
 		// Reply interactivity
 		this.replyButton.addEventListener('click', () => {
-			this.addReply();
+			if (this.replyButton.innerHTML === 'Reply') {
+				this.addReply();
+			} else {
+				console.log('edit');
+			}
 		});
+
+		// Delete button functionality
+		this.sectionCenter.addEventListener('mouseover', () => {
+			if (this.deleteButton) {
+				this.deleteButton.style.opacity = 1;
+			}
+		});
+
+		this.sectionCenter.addEventListener('mouseout', () => {
+			if (this.deleteButton) {
+				this.deleteButton.style.opacity = 0;
+			}
+		});
+
+		if (this.deleteButton) {
+			this.deleteButton.addEventListener('click', () => {
+				// localData.comments
+				console.log(this.comment);
+				console.log('delete');
+			});
+		}
 
 		// this.comment.replies.forEach((reply) => this.addReplies(reply));
 
@@ -248,6 +294,13 @@ class addComment {
 				user: localData.currentUser,
 				replies: [],
 			};
+
+			if (this.type === 'reply') {
+				fullReply['replyId'] =
+					this.comment.id +
+					localData.comments[this.comment.id - 1].replies.length;
+			}
+
 			if (fullReply.content) {
 				// this.comment.replies.push(fullReply);
 				localData.comments[this.comment.id - 1].replies.push(fullReply);
@@ -262,6 +315,9 @@ class addComment {
 				);
 				// throw new Error('nothing in there');
 			}
+		});
+		this.newReplySendButton.addEventListener('mouseover', () => {
+			console.log(this.type);
 		});
 
 		this.newReplyTextArea.addEventListener('keypress', (e) => {

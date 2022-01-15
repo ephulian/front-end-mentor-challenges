@@ -82,6 +82,7 @@ COMMENT ==========================
 .user {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 }
 
 .user-img {
@@ -89,7 +90,6 @@ COMMENT ==========================
 }
 
 .user-info {
-	height: 25px;
 	display: grid;
 	grid-template-columns: repeat(3, auto);
 	gap: 15px;
@@ -108,6 +108,11 @@ COMMENT ==========================
 	height: 40px;
 }
 
+.reply-delete-buttons-container {
+	display: flex;
+	gap: 1rem;
+}
+
 .reply {
 	font-size: 1.25rem;
 	color: var(--clr-deep-purple);
@@ -116,7 +121,13 @@ COMMENT ==========================
 .delete {
 	font-size: 1.25rem;
 	color: rgb(161, 49, 50);
+	opacity: 0;
+	/* opacity: 1; */
 }
+
+/* .delete:hover {
+	opacity: 1;
+} */
 
 .reply:active {
 	background-color: var(--clr-deep-purple);
