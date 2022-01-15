@@ -209,11 +209,29 @@ class addComment {
 					location.reload();
 					console.log('Comment deleted');
 				} else if (this.type == 'reply') {
-					const indexOfObjectToBeDeleted = localData.comments[
+					const indexOfReplyBeingRepliedTo = localData.comments[
 						this.comment.id - 1
 					].replies.indexOf(this.comment);
+
+					const parentObject = localData.comments.find((comment) => {
+						return (
+							comment.replies[indexOfReplyBeingRepliedTo] ==
+							localData.comments[this.comment.id - 1].replies[
+								indexOfReplyBeingRepliedTo
+							]
+						);
+					});
+
+					const indexOfObjectToBeDeleted = localData.comments[
+						localData.comments.indexOf(parentObject)
+					].replies.indexOf(this.comment);
+					console.log(indexOfObjectToBeDeleted);
+
 					const commentObjectToBeDeletedFrom =
-						localData.comments[this.comment.id - 1].replies;
+						localData.comments[localData.comments.indexOf(parentObject)]
+							.replies;
+					console.log(commentObjectToBeDeletedFrom);
+
 					commentObjectToBeDeletedFrom.splice(indexOfObjectToBeDeleted, 1);
 					localStorage.setItem('data', JSON.stringify(localData));
 					location.reload();
@@ -314,9 +332,37 @@ class addComment {
 				user: localData.currentUser,
 				replies: [],
 			};
-			if (fullReply.content) {
-				// this.comment.replies.push(fullReply);
-				localData.comments[this.comment.id - 1].replies.push(fullReply);
+
+			if (fullReply.content && this.type == 'comment') {
+				const indexOfCommentBeingRepliedTo = localData.comments.indexOf(
+					this.comment
+				);
+
+				localData.comments[indexOfCommentBeingRepliedTo].replies.push(
+					fullReply
+				);
+
+				this.sectionCenter.removeChild(this.newReplyTextInput);
+				localStorage.setItem('data', JSON.stringify(localData));
+				location.reload();
+			} else if (fullReply.content && this.type == 'reply') {
+				const indexOfReplyBeingRepliedTo = localData.comments[
+					this.comment.id - 1
+				].replies.indexOf(this.comment);
+
+				const parentObject = localData.comments.find((comment) => {
+					return (
+						comment.replies[indexOfReplyBeingRepliedTo] ==
+						localData.comments[this.comment.id - 1].replies[
+							indexOfReplyBeingRepliedTo
+						]
+					);
+				});
+
+				localData.comments[
+					localData.comments.indexOf(parentObject)
+				].replies.push(fullReply);
+
 				this.sectionCenter.removeChild(this.newReplyTextInput);
 				localStorage.setItem('data', JSON.stringify(localData));
 				location.reload();
@@ -326,37 +372,51 @@ class addComment {
 					'placeholder',
 					'Please enter a reply!'
 				);
-				// throw new Error('nothing in there');
 			}
+
+			// if (fullReply.content) {
+			// 	// this.comment.replies.push(fullReply);
+			// 	localData.comments[this.comment.id - 1].replies.push(fullReply);
+			// 	this.sectionCenter.removeChild(this.newReplyTextInput);
+			// 	localStorage.setItem('data', JSON.stringify(localData));
+			// 	// location.reload();
+			// } else {
+			// 	this.newReplyTextArea.style.border = '2px solid red';
+			// 	this.newReplyTextArea.setAttribute(
+			// 		'placeholder',
+			// 		'Please enter a reply!'
+			// 	);
+			// 	// throw new Error('nothing in there');
+			// }
 		});
 
-		this.newReplyTextArea.addEventListener('keypress', (e) => {
-			if (e.key === 'Enter') {
-				const replyText = this.newReplyTextArea.value;
-				const fullReply = {
-					id: localData.comments.length + 1,
-					content: replyText,
-					createdAt: 'Now',
-					score: 0,
-					user: localData.currentUser,
-					replies: [],
-				};
-				if (fullReply.content) {
-					this.comment.replies.push(fullReply);
-					// localData.comments[this.comment.id - 1].replies.push(fullReply);
-					this.sectionCenter.removeChild(this.newReplyTextInput);
-					localStorage.setItem('data', JSON.stringify(localData));
-					location.reload();
-				} else {
-					this.newReplyTextArea.style.border = '2px solid red';
-					this.newReplyTextArea.setAttribute(
-						'placeholder',
-						'Please enter a reply!'
-					);
-					// throw new Error('nothing in there');
-				}
-			}
-		});
+		// this.newReplyTextArea.addEventListener('keypress', (e) => {
+		// 	if (e.key === 'Enter') {
+		// 		const replyText = this.newReplyTextArea.value;
+		// 		const fullReply = {
+		// 			id: localData.comments.length + 1,
+		// 			content: replyText,
+		// 			createdAt: 'Now',
+		// 			score: 0,
+		// 			user: localData.currentUser,
+		// 			replies: [],
+		// 		};
+		// 		if (fullReply.content) {
+		// 			this.comment.replies.push(fullReply);
+		// 			// localData.comments[this.comment.id - 1].replies.push(fullReply);
+		// 			this.sectionCenter.removeChild(this.newReplyTextInput);
+		// 			localStorage.setItem('data', JSON.stringify(localData));
+		// 			location.reload();
+		// 		} else {
+		// 			this.newReplyTextArea.style.border = '2px solid red';
+		// 			this.newReplyTextArea.setAttribute(
+		// 				'placeholder',
+		// 				'Please enter a reply!'
+		// 			);
+		// 			// throw new Error('nothing in there');
+		// 		}
+		// 	}
+		// });
 		this.newReplyCancelButton.addEventListener('click', () => {
 			this.sectionCenter.removeChild(this.newReplyTextInput);
 		});
