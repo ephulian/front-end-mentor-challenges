@@ -199,9 +199,21 @@ class addComment {
 
 		if (this.deleteButton) {
 			this.deleteButton.addEventListener('click', () => {
-				// localData.comments
-				console.log(this.comment);
-				console.log('delete');
+				const indexOfObjectToBeDeleted = localData.comments[
+					this.comment.id - 1
+				].replies.indexOf(this.comment);
+				const commentObjectToBeDeleted =
+					localData.comments[this.comment.id - 1].replies[
+						localData.comments[this.comment.id - 1].replies.indexOf(
+							this.comment
+						)
+					];
+				const commentObjectToBeDeletedFrom =
+					localData.comments[this.comment.id - 1].replies;
+				commentObjectToBeDeletedFrom.splice(indexOfObjectToBeDeleted, 1);
+				localStorage.setItem('data', JSON.stringify(localData));
+				location.reload();
+				console.log('Comment deleted');
 			});
 		}
 
@@ -276,11 +288,11 @@ class addComment {
 
 		// Reply cancel button
 		this.newReplyCancelButton = document.createElement('button');
-		// this.newReplyCancelButton.setAttribute('type', 'submit');
 		this.newReplyCancelButton.classList.add('cancel-reply-button');
 		this.newReplyCancelButton.innerHTML = 'CANCEL';
 		this.buttonContainer.appendChild(this.newReplyCancelButton);
 
+		// Add whole thing to main
 		this.sectionCenter.appendChild(this.newReplyTextInput);
 
 		this.newReplySendButton.addEventListener('click', () => {
@@ -288,19 +300,15 @@ class addComment {
 			const fullReply = {
 				// id: localData.comments.length + 1,
 				id: this.comment.id,
+				replyId:
+					this.comment.id +
+					localData.comments[this.comment.id - 1].replies.length,
 				content: replyText,
 				createdAt: 'Now',
 				score: 0,
 				user: localData.currentUser,
 				replies: [],
 			};
-
-			if (this.type === 'reply') {
-				fullReply['replyId'] =
-					this.comment.id +
-					localData.comments[this.comment.id - 1].replies.length;
-			}
-
 			if (fullReply.content) {
 				// this.comment.replies.push(fullReply);
 				localData.comments[this.comment.id - 1].replies.push(fullReply);
@@ -315,9 +323,6 @@ class addComment {
 				);
 				// throw new Error('nothing in there');
 			}
-		});
-		this.newReplySendButton.addEventListener('mouseover', () => {
-			console.log(this.type);
 		});
 
 		this.newReplyTextArea.addEventListener('keypress', (e) => {
@@ -366,12 +371,6 @@ let allReplies = [];
 
 function byScore(a, b) {
 	return parseInt(a.score) - parseInt(b.score);
-}
-
-function sortComments(data) {
-	data.forEach((element) => {
-		console.log(element);
-	});
 }
 
 localData.comments
