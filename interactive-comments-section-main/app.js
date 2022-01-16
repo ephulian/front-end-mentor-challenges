@@ -3,7 +3,8 @@ import data from './data.json' assert { type: 'json' };
 // history.scrollRestoration = 'manual';
 
 const newComment = document.querySelector('#new-comment');
-const newCommentSendBTN = document.querySelector('send');
+const newCommentSendBTN = document.querySelector('#send');
+const newCommentTextContent = document.querySelector('#comment-text-area');
 
 const resetBTN12345 = document.getElementById('reset-btn');
 resetBTN12345.addEventListener('click', () => {
@@ -12,6 +13,41 @@ resetBTN12345.addEventListener('click', () => {
 });
 
 let localData = JSON.parse(localStorage.getItem('data'));
+
+newCommentSendBTN.addEventListener('click', () => {
+	console.log(localData.comments.length);
+	const comment = {
+		// id: localData.comments.length + 1,
+		id: localData.comments.length + 1,
+		content: newCommentTextContent.value,
+		createdAt: 'Now',
+		score: 0,
+		user: localData.currentUser,
+		replies: [],
+	};
+	console.log(comment);
+	localData.comments.push(comment);
+	localStorage.setItem('data', JSON.stringify(localData));
+	location.reload();
+});
+
+newCommentTextContent.addEventListener('keypress', (e) => {
+	if (e.key == 'Enter') {
+		const comment = {
+			// id: localData.comments.length + 1,
+			id: localData.comments.length + 1,
+			content: newCommentTextContent.value,
+			createdAt: 'Now',
+			score: 0,
+			user: localData.currentUser,
+			replies: [],
+		};
+		console.log(comment);
+		localData.comments.push(comment);
+		localStorage.setItem('data', JSON.stringify(localData));
+		location.reload();
+	}
+});
 
 class addComment {
 	constructor(comment, type) {
@@ -186,30 +222,58 @@ class addComment {
 		// this.down.addEventListener('click', this.scoreDown);
 
 		// Reply/Edit interactivity
+		let edit = 'closed';
+		let reply = 'closed';
 		this.replyButton.addEventListener('click', () => {
+			// let open = 'closed';
 			if (this.replyButton.innerHTML === 'Reply') {
-				this.addReply();
-			} else {
-				console.log('edit');
-				this.replyButton.removeEventListener('click', () => {});
-				this.textForEdit = document.createElement('textarea');
-				this.textForEdit.classList.add('comment-edit-area');
-				this.textForEdit.setAttribute('rows', 5);
-				this.textForEdit.innerHTML = this.commentContentText.innerHTML;
-				this.mainSection.removeChild(this.commentContentText);
-				this.mainSection.appendChild(this.textForEdit);
+				if (reply == 'closed') {
+					this.addReply();
+					reply = 'open';
+				} else if (reply == 'open') {
+					this.sectionCenter.removeChild(this.newReplyTextInput);
+					reply = 'closed';
+					// console.log(reply);
+				}
+			} else if (this.replyButton.innerHTML === 'Edit') {
+				if (edit == 'closed') {
+					console.log('edit');
+					this.textForEdit = document.createElement('textarea');
+					this.textForEdit.classList.add('comment-edit-area');
+					this.textForEdit.setAttribute('rows', 5);
+					this.textForEdit.innerHTML = this.commentContentText.innerHTML;
+					this.mainSection.removeChild(this.commentContentText);
+					this.mainSection.appendChild(this.textForEdit);
 
-				this.updateButton = document.createElement('h1');
-				this.updateButton.classList.add('send-update-button');
-				this.updateButton.innerHTML = 'UPDATE';
-				this.mainSection.appendChild(this.updateButton);
+					this.updateButton = document.createElement('h1');
+					this.updateButton.classList.add('send-update-button');
+					this.updateButton.innerHTML = 'UPDATE';
+					this.mainSection.appendChild(this.updateButton);
 
-				this.updateButton.addEventListener('click', () => {
-					this.commentContentText.innerHTML = this.textForEdit.value;
+					this.updateButton.addEventListener('click', () => {
+						this.commentContentText.innerHTML = this.textForEdit.value;
+						this.mainSection.removeChild(this.textForEdit);
+						this.mainSection.removeChild(this.updateButton);
+						this.mainSection.appendChild(this.commentContentText);
+						edit = 'closed';
+					});
+
+					this.textForEdit.addEventListener('keypress', (e) => {
+						if (e.key == 'Enter') {
+							this.commentContentText.innerHTML = this.textForEdit.value;
+							this.mainSection.removeChild(this.textForEdit);
+							this.mainSection.removeChild(this.updateButton);
+							this.mainSection.appendChild(this.commentContentText);
+							edit = 'closed';
+						}
+					});
+					edit = 'open';
+				} else if (edit == 'open') {
 					this.mainSection.removeChild(this.textForEdit);
 					this.mainSection.removeChild(this.updateButton);
 					this.mainSection.appendChild(this.commentContentText);
-				});
+					edit = 'closed';
+				}
 			}
 		});
 
@@ -238,17 +302,8 @@ class addComment {
 					location.reload();
 					console.log('Comment deleted');
 				} else if (this.type == 'reply') {
-					const indexOfReplyBeingRepliedTo = localData.comments[
-						this.comment.id - 1
-					].replies.indexOf(this.comment);
-
 					const parentObject = localData.comments.find((comment) => {
-						return (
-							comment.replies[indexOfReplyBeingRepliedTo] ==
-							localData.comments[this.comment.id - 1].replies[
-								indexOfReplyBeingRepliedTo
-							]
-						);
+						return comment.id == this.comment.id;
 					});
 
 					const indexOfObjectToBeDeleted = localData.comments[
@@ -259,7 +314,9 @@ class addComment {
 					const commentObjectToBeDeletedFrom =
 						localData.comments[localData.comments.indexOf(parentObject)]
 							.replies;
-					console.log(commentObjectToBeDeletedFrom);
+
+					// console.log(commentObjectToBeDeletedFrom);
+					console.log(parentObject);
 
 					commentObjectToBeDeletedFrom.splice(indexOfObjectToBeDeleted, 1);
 					localStorage.setItem('data', JSON.stringify(localData));
@@ -290,6 +347,7 @@ class addComment {
 		const textInputFields = document.querySelectorAll('.new-reply-text-input');
 		const allCurrentComments = document.querySelectorAll('.section-center');
 		const oneComment = document.querySelector('.new-reply-text-input');
+
 		if (textInputFields.length > 0) {
 			allCurrentComments.forEach((comment) => {
 				if (comment.lastChild == oneComment) {
@@ -350,10 +408,8 @@ class addComment {
 			const replyText = this.newReplyTextArea.value;
 			const fullReply = {
 				// id: localData.comments.length + 1,
+
 				id: this.comment.id,
-				replyId:
-					this.comment.id +
-					localData.comments[this.comment.id - 1].replies.length,
 				content: replyText,
 				createdAt: 'Now',
 				score: 0,
@@ -374,17 +430,8 @@ class addComment {
 				localStorage.setItem('data', JSON.stringify(localData));
 				location.reload();
 			} else if (fullReply.content && this.type == 'reply') {
-				const indexOfReplyBeingRepliedTo = localData.comments[
-					this.comment.id - 1
-				].replies.indexOf(this.comment);
-
 				const parentObject = localData.comments.find((comment) => {
-					return (
-						comment.replies[indexOfReplyBeingRepliedTo] ==
-						localData.comments[this.comment.id - 1].replies[
-							indexOfReplyBeingRepliedTo
-						]
-					);
+					return comment.id == this.comment.id;
 				});
 
 				localData.comments[
@@ -408,10 +455,8 @@ class addComment {
 				const replyText = this.newReplyTextArea.value;
 				const fullReply = {
 					// id: localData.comments.length + 1,
+
 					id: this.comment.id,
-					replyId:
-						this.comment.id +
-						localData.comments[this.comment.id - 1].replies.length,
 					content: replyText,
 					createdAt: 'Now',
 					score: 0,
@@ -432,17 +477,8 @@ class addComment {
 					localStorage.setItem('data', JSON.stringify(localData));
 					location.reload();
 				} else if (fullReply.content && this.type == 'reply') {
-					const indexOfReplyBeingRepliedTo = localData.comments[
-						this.comment.id - 1
-					].replies.indexOf(this.comment);
-
 					const parentObject = localData.comments.find((comment) => {
-						return (
-							comment.replies[indexOfReplyBeingRepliedTo] ==
-							localData.comments[this.comment.id - 1].replies[
-								indexOfReplyBeingRepliedTo
-							]
-						);
+						return comment.id == this.comment.id;
 					});
 
 					localData.comments[
